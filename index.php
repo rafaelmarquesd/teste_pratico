@@ -1,9 +1,11 @@
 <?php
 include("db_connection.php");
 
+$consulta_s = "SELECT sexo FROM pessoas";
+$con_s = $mysqli->query($consulta_s) or die ($mysqli->error);
 $consulta = "SELECT * FROM pessoas";
 $con = $mysqli->query($consulta) or die ($mysqli->error);
-$consulta2 = "SELECT * FROM profissoes";
+$consulta2 = "SELECT nome FROM profissoes";
 $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
 ?>
 
@@ -24,9 +26,11 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
           <td>Profissão</td>
           <td>Ação</td>
         </tr>
-        <?php 
-        while($dado2 = $con2->fetch_array())
-        while($dado = $con->fetch_array()){ ?>
+        <?php
+        if ($con_s = "Feminino"){        
+        while($dado2 = $con2->fetch_array()){
+        while($dado = $con->fetch_array()){ 
+        ?>
         <tr>
           <td><?php echo $dado["nome"] ?></td>
           <td><?php echo $dado["nascimento"] ?></td>
@@ -34,11 +38,15 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
           <td><?php echo $dado["cpf"] ?></td>
           <td><?php echo $dado["email"] ?></td>
           <td><?php echo $dado["celular"] ?></td>
-          <td><?php echo $dado2["nome"] ?></td>
+          <td><?php echo $dado["profissao_id"] ?></td>
           <td><a href="editar.php?codigo=<?php echo $dado["nome"] ?>">Editar</a> | 
               <a href="excluir.php?codigo=<?php echo $dado["nome"] ?>">Excluir</a></td>
         </tr>
-        <?php } ?>
+        <?php 
+        }
+          }
+            } 
+      ?>
       </table>
     </body>
 </html>
