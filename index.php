@@ -24,7 +24,8 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
           <td>Profissão</td>
           <td>Ação</td>
         </tr>
-        <?php      
+        <?php 
+        if($con -> nascimento<'2002-01-01'){     
         while($dado2 = $con2->fetch_array()){
         while($dado = $con->fetch_array()){ 
         ?>
@@ -35,13 +36,14 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
           <td><?php echo $dado["cpf"] ?></td>
           <td><?php echo $dado["email"] ?></td>
           <td><?php echo $dado["celular"] ?></td>
-          <td><?php echo $dado["profissao_id"] ?></td>
+          <td><?php echo $dado2["nome"] ?></td>
           <td><a href="editar.php?codigo=<?php echo $dado["nome"] ?>">Editar</a> | 
               <a href="excluir.php?codigo=<?php echo $dado["nome"] ?>">Excluir</a></td>
         </tr>
         <?php 
         }
           }
+            }
       ?>
       </table>
     </body>
