@@ -1,9 +1,7 @@
 <?php
 include("db_connection.php");
 
-$consulta_s = "SELECT sexo FROM pessoas";
-$con_s = $mysqli->query($consulta_s) or die ($mysqli->error);
-$consulta = "SELECT * FROM pessoas";
+$consulta = "SELECT * FROM pessoas WHERE sexo='Feminino'";
 $con = $mysqli->query($consulta) or die ($mysqli->error);
 $consulta2 = "SELECT nome FROM profissoes";
 $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
@@ -26,8 +24,7 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
           <td>Profissão</td>
           <td>Ação</td>
         </tr>
-        <?php
-        if ($con_s = "Feminino"){        
+        <?php      
         while($dado2 = $con2->fetch_array()){
         while($dado = $con->fetch_array()){ 
         ?>
@@ -45,7 +42,6 @@ $con2 = $mysqli->query($consulta2) or die ($mysqli->error);
         <?php 
         }
           }
-            } 
       ?>
       </table>
     </body>
